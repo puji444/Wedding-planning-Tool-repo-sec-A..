@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seating Chart Tool</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #ffdd57;
+        }
+
+        nav {
+            margin: 15px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Link color */
+            text-decoration: none;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd57;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .guest-form {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d15b2e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5733;
+        }
+
+        .seating-list {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .seating-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .seating-item:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Seating Chart Tool</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="checklist.html">Checklist</a></li>
+                <li><a href="guestlist.html">Guest List</a></li>
+                <li><a href="budget.html">Budget Calculator</a></li>
+                <li><a href="inspiration.html">Inspiration Board</a></li>
+                <li><a href="blogs.html">Blogs/Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="guest-form">
+            <h2>Add Guest</h2>
+            <form id="guestForm">
+                <label for="guestName">Guest Name:</label>
+                <input type="text" id="guestName" required>
+
+                <label for="tableNumber">Table Number:</label>
+                <input type="text" id="tableNumber" required>
+
+                <button type="submit">Add Guest</button>
+            </form>
+        </div>
+
+        
+    </main>
+
+    
+    <script>
+        document.getElementById('guestForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const guestName = document.getElementById('guestName').value;
+            const tableNumber = document.getElementById('tableNumber').value;
+
+            const seatingChart = document.getElementById('seatingChart');
+            const seatingItem = document.createElement('div');
+            seatingItem.classList.add('seating-item');
+            seatingItem.innerHTML = `<strong>${guestName}</strong> - Table ${tableNumber}`;
+            seatingChart.appendChild(seatingItem);
+
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

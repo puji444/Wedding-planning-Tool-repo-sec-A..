@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Directory</title>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #343a40; /* Dark background for contrast */
+            color: white; /* White text for readability */
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            color: #ffdd57; /* Bright color for the header */
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        nav {
+            background-color: #5a6268; /* Navbar background color */
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #f8f9fa; /* Link color */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffdd57; /* Hover link color */
+        }
+
+        .vendor-list {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .vendor-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .vendor-item:last-child {
+            border-bottom: none;
+        }
+
+        .btn-danger {
+            margin-left: 10px;
+        }
+
+        .form-group {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff; /* Primary button color */
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vendor Directory</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="checklist.html">Checklist</a></li>
+                <li><a href="guestlist.html">Guest List</a></li>
+                <li><a href="budget.html">Budget Calculator</a></li>
+                <li><a href="inspiration.html">Inspiration Board</a></li>
+                <li><a href="blogs.html">Blogs/Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="vendor-form form-group">
+            <form id="vendorForm">
+                <label for="vendorName">Vendor Name:</label>
+                <input type="text" id="vendorName" required>
+
+                <label for="vendorType">Vendor Type:</label>
+                <input type="text" id="vendorType" required>
+
+                <label for="vendorWebsite">Website URL:</label>
+                <input type="url" id="vendorWebsite" required>
+
+                <button type="submit">Add Vendor</button>
+            </form>
+        </div>
+
+        <div id="vendors" class="vendor-list"></div>
+    </main>
+
+    
+
+    <script>
+        document.getElementById('vendorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('vendorName').value;
+            const type = document.getElementById('vendorType').value;
+            const website = document.getElementById('vendorWebsite').value;
+
+            const vendorList = document.getElementById('vendors');
+            const vendorItem = document.createElement('div');
+            vendorItem.classList.add('vendor-item');
+            vendorItem.innerHTML = `
+                <strong>${name}</strong> (${type}) - <a href="${website}" target="_blank">${website}</a>
+                <button class="btn-danger btn-sm float-right" onclick="removeVendor(this)">Remove</button>
+            `;
+            vendorList.appendChild(vendorItem);
+
+            // Reset the form
+            this.reset();
+        });
+
+        function removeVendor(button) {
+            const vendorItem = button.parentElement;
+            vendorItem.remove();
+        }
+    </script>
+</body>
+</html>

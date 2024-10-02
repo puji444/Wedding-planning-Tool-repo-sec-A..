@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Wedding Planner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        
+            body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, rgba(240, 244, 248, 0.8), rgba(225, 232, 237, 0.8)), 
+                url('https://hizonscatering.com/wp-content/uploads/2016/12/shutterstock_151827797.jpg');
+    background-size: cover;
+    background-position: center 30%; /* Adjusted to move the image down */
+    color: #333333;
+}
+
+        
+
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2ed13c;
+            font-weight: bold;
+            margin: 0 10px;
+            transition: all 0.3s;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #d15b2e;
+            color: white;
+        }
+
+        main {
+            padding: 40px 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 40px auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #b8503e;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #b8503e;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .form-container {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d15b2e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5733;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Your Elegant Wedding Planner</h1>
+        <nav>
+            <a href="budget.html">Budget Calculator</a>
+            <a href="guestlist.html">Guest List Manager</a>
+            <a href="checklist.html">Checklist & Timeline</a>
+            <a href="vendors.html">Vendor Directory</a>
+            <a href="inspiration.html">Inspiration Board</a>
+            <a href="seating.html">Seating Chart Tool</a>
+            <a href="blog.html">Blog/Resources</a>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <h2>Login / Register</h2>
+            <div class="form-container">
+                <form id="authForm">
+                    <input type="text" id="username" placeholder="Username" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="toggleMessage">Don't have an account? <a href="register.html">Register here</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Wedding Planner</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            alert("Welcome to Your Wedding Planner! Get started by exploring our features.");
+        });
+    </script>
+</body>
+</html>

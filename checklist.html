@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist & Timeline</title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007bff; /* Header background color */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        nav {
+            margin: 15px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #ffffff; /* Link color */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f8f9fa; /* Hover link color */
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .list-group {
+            margin-top: 20px;
+            padding: 0;
+            list-style: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .list-group-item {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+        button {
+            margin-left: 10px;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Checklist & Timeline</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="guestlist.html">Guest List</a></li>
+                <li><a href="budget.html">Budget Calculator</a></li>
+                <li><a href="vendors.html">Vendor Directory</a></li>
+                <li><a href="inspiration.html">Inspiration Board</a></li>
+                <li><a href="blogs.html">Blogs/Resources</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Add Your Tasks</h2>
+        <form id="taskForm">
+            <div class="form-group">
+                <label for="taskName">Task Name:</label>
+                <input type="text" class="form-control" id="taskName" required>
+            </div>
+            <div class="form-group">
+                <label for="dueDate">Due Date:</label>
+                <input type="date" class="form-control" id="dueDate" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+
+        <div id="checklist">
+            <h2>Your Checklist</h2>
+            <ul class="list-group" id="taskList">
+                <!-- Task list will be displayed here -->
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Wedding Planner</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const taskForm = document.getElementById('taskForm');
+            const taskNameInput = document.getElementById('taskName');
+            const dueDateInput = document.getElementById('dueDate');
+            const taskList = document.getElementById('taskList');
+
+            let tasks = [];
+
+            taskForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const taskName = taskNameInput.value.trim();
+                const dueDate = dueDateInput.value;
+
+                if (taskName && dueDate) {
+                    const task = { name: taskName, dueDate, completed: false };
+                    tasks.push(task);
+                    renderTaskList();
+                    taskForm.reset();
+                }
+            });
+
+            function renderTaskList() {
+                taskList.innerHTML = '';
+                tasks.forEach((task, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.classList.add('list-group-item');
+
+                    const taskContent = document.createElement('div');
+                    taskContent.innerHTML = `
+                        <span>${task.name} (Due: ${new Date(task.dueDate).toLocaleDateString()})</span>
+                    `;
+
+                    const completeButton = document.createElement('button');
+                    completeButton.classList.add('btn', 'btn-success', 'btn-sm');
+                    completeButton.textContent = 'Complete';
+                    completeButton.onclick = () => completeTask(index);
+
+                    const removeButton = document.createElement('button');
+                    removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = () => removeTask(index);
+
+                    taskContent.appendChild(completeButton);
+                    taskContent.appendChild(removeButton);
+                    listItem.appendChild(taskContent);
+                    taskList.appendChild(listItem);
+                });
+            }
+
+            function completeTask(index) {
+                tasks[index].completed = true;
+                renderTaskList();
+            }
+
+            function removeTask(index) {
+                tasks.splice(index, 1);
+                renderTaskList();
+            }
+        });
+    </script>
+</body>
+</html>

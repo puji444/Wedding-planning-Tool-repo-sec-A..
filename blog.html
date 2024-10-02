@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs/Resources</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #4e5d6c; /* Header background color */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin: 0;
+            color: #ffcc00; /* Header text color */
+        }
+
+        nav {
+            background-color: #5a6268; /* Navbar background color */
+            padding: 10px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #f8f9fa; /* Link color */
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffcc00; /* Hover link color */
+        }
+
+        .blog-form {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input[type="text"], input[type="url"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #d15b2e;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ff5733;
+        }
+
+        .blog-list {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+        }
+
+        .blog-item:last-child {
+            border-bottom: none;
+        }
+
+        .blog-item h3 {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Blogs/Resources</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="checklist.html">Checklist</a></li>
+                <li><a href="guestlist.html">Guest List</a></li>
+                <li><a href="budget.html">Budget Calculator</a></li>
+                <li><a href="seating.html">Seating Chart</a></li>
+                <li><a href="inspiration.html">Inspiration Board</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="blog-form">
+            <h2>Add a Blog Entry</h2>
+            <form id="blogForm">
+                <label for="blogTitle">Blog Title:</label>
+                <input type="text" id="blogTitle" required>
+
+                <label for="blogContent">Blog Content:</label>
+                <textarea id="blogContent" rows="5" required></textarea>
+
+                <label for="blogUrl">Blog URL:</label>
+                <input type="url" id="blogUrl" required>
+
+                <button type="submit">Add Blog Entry</button>
+            </form>
+        </div>
+        <div id="blogs" class="blog-list"></div>
+    </main>
+
+    
+    <script>
+        document.getElementById('blogForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const title = document.getElementById('blogTitle').value;
+            const content = document.getElementById('blogContent').value;
+            const url = document.getElementById('blogUrl').value;
+
+            const blogs = document.getElementById('blogs');
+            const blogItem = document.createElement('div');
+            blogItem.classList.add('blog-item');
+            blogItem.innerHTML = `<h3>${title}</h3><p>${content}</p><a href="${url}" target="_blank">Read more</a>`;
+            blogs.appendChild(blogItem);
+
+            // Reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        #budgetSummary {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Budget Calculator</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="guestlist.html">Guest List Manager</a>
+            <a href="checklist.html">Checklist & Timeline</a>
+            <a href="vendors.html">Vendor Directory</a>
+            <a href="inspiration.html">Inspiration Board</a>
+            <a href="seating.html">Seating Chart Tool</a>
+            <a href="blog.html">Blog/Resources</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="budgetForm">
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" required>
+            </div>
+            <div class="form-group">
+                <label for="estimatedCost">Estimated Cost:</label>
+                <input type="number" class="form-control" id="estimatedCost" required>
+            </div>
+            <div class="form-group">
+                <label for="actualCost">Actual Cost:</label>
+                <input type="number" class="form-control" id="actualCost" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Budget Item</button>
+        </form>
+
+        <div id="budgetSummary">
+            <h2>Budget Summary</h2>
+            <ul class="list-group" id="summaryList">
+                <!-- Budget summary will be displayed here -->
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Wedding Planner</p>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#budgetForm').on('submit', function(e) {
+                e.preventDefault();
+
+                const category = $('#category').val();
+                const estimatedCost = parseFloat($('#estimatedCost').val());
+                const actualCost = parseFloat($('#actualCost').val());
+
+                const listItem = $('<li></li>').addClass('list-group-item');
+                listItem.text(`${category}: Estimated - $${estimatedCost.toFixed(2)}, Actual - $${actualCost.toFixed(2)}`);
+
+                $('#summaryList').append(listItem);
+
+                // Clear the form fields
+                $('#budgetForm')[0].reset();
+            });
+        });
+    </script>
+</body>
+</html>

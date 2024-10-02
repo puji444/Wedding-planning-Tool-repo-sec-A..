@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - Elegant Wedding Planner</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f0f4f8, #e1e8ed);
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #b8503e;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #b8503e;
+            margin-bottom: 20px;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            box-shadow: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #d15b2e;
+            box-shadow: 0 0 5px rgba(209, 91, 46, 0.5);
+        }
+
+        .btn-custom {
+            background-color: #d15b2e;
+            color: white;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff5733;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center mb-4">
+            <h1>Join the Elegant Wedding Planner Community</h1>
+        </header>
+
+        <div class="card">
+            <div class="card-body">
+                <h2 class="text-center">Create Your Account</h2>
+                <form id="registrationForm">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-custom btn-block">Register</button>
+                </form>
+                <p class="text-center mt-3">Already have an account? <a href="login.html">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Wedding Planner</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Simulate successful registration
+            alert(`Registration successful for: ${username}`);
+
+            // Redirect to home page after a short delay
+            setTimeout(function() {
+                window.location.href = 'index.html'; // Change this to your home page URL
+            }, 1000); // 1 second delay
+        });
+    </script>
+</body>
+</html>
